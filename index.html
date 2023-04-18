@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Mining course practice 28/01/1402</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Data Mining course practice 28/01/1402</div>
+        <br><br>
+        <button onclick="init(true)">base test</button>
+        <br>
+        <br>
+        <button onclick="randomDataset()">javascript randomize test</button>
+        <br>
+        <br>
+        <div>Dataset 1 :<span id="dataset1"></span></div>
+        <br>
+        <div>Dataset 2 :<span id="dataset2"></span></div>
+        <br>
+        <div>Dataset 1 length:<span id="dataset1length"></span></div>
+        <br>
+        <div>Dataset 2 length:<span id="dataset2length"></span></div>
+        <br>
+        <div>Dataset 1 AVG :<span id="dataset1avg"></span></div>
+        <br>
+        <div>Dataset 1 AVG:<span id="dataset2avg"></span></div>
+        <br>
+        <div>Numerator :<span id="numerator"></span></div>
+        <br>
+        <div>Denominator :<span id="denominator"></span></div>
+        <br>
+        <div>r :<span id="r"></span></div>
+
+    </body>
+    <script>
+
+        let xDataset = [], yDataset = [];
+
+        function randomDataset() {
+            for (let i = 0; i < 1000; i++) {
+                xDataset[i] = Math.floor((Math.random() * 100) + 1);
+                yDataset[i] = Math.floor((Math.random() * 100) + 1);
+            }
+            init();
+        }
+        function init(isBaseDataset) {
+            if (isBaseDataset) {
+                xDataset = [2, 5, 34, 64, 35, 9];
+                yDataset = [43, 61, 2, 7, 25, 40];
+            }
+
+            document.querySelector("#dataset1").textContent = xDataset;
+            document.querySelector("#dataset2").textContent = yDataset;
+            document.querySelector("#dataset1length").textContent = xDataset.length;
+            document.querySelector("#dataset2length").textContent = yDataset.length;
+
+            let xAvg = xDataset.reduce((a, b) => a + b, 0) / xDataset.length;
+            let yAvg = yDataset.reduce((a, b) => a + b, 0) / yDataset.length;
+
+            document.querySelector("#dataset1avg").textContent = xAvg;
+            document.querySelector("#dataset2avg").textContent = yAvg;
+
+            if (xDataset.length !== yDataset.length) {
+                //fill some data to get equal data size
+            }
+
+            let numerator = 0, denominator, xDenominator = 0, yDenominator = 0;
+            for (let f = 0; f < xDataset.length; f++) {
+                numerator += ((xDataset[f] - xAvg) * (yDataset[f] - yAvg));
+                xDenominator += Math.pow((xDataset[f] - xAvg), 2);
+                yDenominator += Math.pow((yDataset[f] - yAvg), 2);
+            }
+            denominator = (Math.sqrt(xDenominator * yDenominator));
+            let r = numerator / denominator;
+            document.querySelector("#numerator").textContent = numerator;
+            document.querySelector("#denominator").textContent = denominator;
+            document.querySelector("#r").textContent = r;
+
+            console.log(r);
+        }
+    </script>
+</html>
