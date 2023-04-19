@@ -13,7 +13,19 @@
         <p>Pearson Correlation Formula :</p>
         <img src="Pearson_correlation_formula.png">
         <br><br>
-        <button onclick="init(true)">base test</button>
+        <!--        <button onclick="init(true)">base test</button>-->
+        <button onclick="agreeCorrolation()">agree corrolation</button>
+        <br><br>
+        <button onclick="disAgreeCorrolation()">disagree corrolation</button>
+        <br><br>
+        <button onclick="zeroCorrolation()">zero corrolation ?(not working!)</button>
+        <br><br>
+        <button onclick="zeroCorrolation2()">zero corrolation 2 ?(not working again!)</button>
+        <br><br>
+        <button onclick="zeroCorrolation3()">zero corrolation 3 ?(not working again!)</button>
+        <br>
+        <br>
+        <p>To get understanding Corrolation concept in what situation we could to get ZERO by result ??</p>
         <br>
         <br>
         <p>In this part we check how much randomization algorithm in JavaScript is accurate (hint : if result is near to 0.0 , random acuration is better)</p>
@@ -37,7 +49,7 @@
         <div>Denominator :<span id="denominator"></span></div>
         <br>
         <div>r :<span id="r"></span></div>
-<br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
     </body>
     <script>
 
@@ -50,12 +62,44 @@
             }
             init();
         }
+        function agreeCorrolation() {
+            xDataset = [2, 5, 34, 64, 35, 9, 34, 80, 44, 100, 3, 54, 27, 63, 21];
+            yDataset = xDataset;
+            init();
+        }
+        function disAgreeCorrolation() {
+            xDataset = [2, 5, 34, 64, 35, 9, 34, 80, 44, 100, 3, 54, 27, 63, 21];
+            xDataset.forEach((v, i) => {
+                yDataset[i] = v * -1;
+            });
+            init();
+        }
+
+        function zeroCorrolation() {
+            xDataset = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            yDataset = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+            init();
+        }
+
+        function zeroCorrolation2() {
+            xDataset = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            yDataset = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11];
+            init();
+        }
+
+
+        function zeroCorrolation3() {
+            xDataset = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            yDataset = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+            init();
+        }
+
         function init(isBaseDataset) {
-            if (isBaseDataset) {
-                xDataset = [2, 5, 34, 64, 35, 9, 34, 80, 44, 100, 3, 54, 27, 63, 21];
-                yDataset = [43, 61, 2, 7, 25, 40, 78, 23, 54, 10, 88, 43, 1, 95, 29];
-                yDataset=xDataset;
-            }
+//            if (isBaseDataset) {
+//                xDataset = [2, 5, 34, 64, 35, 9, 34, 80, 44, 100, 3, 54, 27, 63, 21];
+//                yDataset = [43, 61, 2, 7, 25, 40, 78, 23, 54, 10, 88, 43, 1, 95, 29];
+//                yDataset = xDataset;
+//            }
 
             document.querySelector("#dataset1").textContent = xDataset;
             document.querySelector("#dataset2").textContent = yDataset;
